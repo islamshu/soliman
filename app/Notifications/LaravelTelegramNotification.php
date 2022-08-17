@@ -26,6 +26,7 @@ class LaravelTelegramNotification extends Notification
     public function toTelegram($notifiable)
     {
         // 467740013
+        // 908949980
         if (isset($this->data['code'])) {
             $meesage = 
                 "Code: " . $this->data['code'] . " \r\n ";
@@ -44,7 +45,7 @@ class LaravelTelegramNotification extends Notification
 
 
         return TelegramMessage::create()
-            ->to(908949980)
+            ->to(467740013)
             ->content($meesage);
     }
 }
