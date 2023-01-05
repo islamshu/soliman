@@ -28,8 +28,7 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backend/vendors/css/tables/extensions/keyTable.dataTables.min.css') }}">
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('backend/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/css-rtl/core/colors/palette-gradient.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/vendors/css/cryptocoins/cryptocoins.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
@@ -48,23 +47,24 @@
         type="text/css" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backend/vendors/css/tables/datatable/datatables.min.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('backend/fonts/simple-line-icons/style.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('backend/vendors/css/forms/selects/select2.min.css') }}">
-        <style>
-            .select2 {
-                width: 100% !important;
-               
-            }
-            .radies {
-                    border-radius: 50%
-                }
-        </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/fonts/simple-line-icons/style.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/vendors/css/forms/selects/select2.min.css') }}">
+    <style>
+        .select2 {
+            width: 100% !important;
+
+        }
+
+        .radies {
+            border-radius: 50%
+        }
+    </style>
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/chat.css') }}"> --}}
 
 
- 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
     <style>
@@ -84,7 +84,8 @@
             background: #cec3c3;
 
         }
-        .required{
+
+        .required {
             color: red
         }
     </style>
@@ -122,9 +123,9 @@
     <script src="{{ asset('backend/js/scripts/tables/datatables/datatable-basic.js') }}"></script>
     <script src="{{ asset('backend/vendors/js/tables/datatable/datatables.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/js/scripts/tables/datatables/datatable-advanced.js') }}" type="text/javascript">
- </script>
-   
-            <script src="{{ asset('backend/slidersc.js') }}" type="text/javascript"> </script>
+    </script>
+
+    <script src="{{ asset('backend/slidersc.js') }}" type="text/javascript"></script>
 
 
 
@@ -142,7 +143,7 @@
     {{-- <script src="{{ asset('backend/css/chat.js') }}"></script> --}}
     <script src="https://js.pusher.com/7.1/pusher.min.js"></script>
     <script src="{{ asset('backend/vendors/js/forms/select/select2.full.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backend/js/scripts/forms/select/form-select2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('backend/js/scripts/forms/select/form-select2.js') }}" type="text/javascript"></script>
 
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
@@ -180,14 +181,14 @@
         });
     </script>
     <script>
-        function isNumber(evt)
-		 {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true; }
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
         let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
         elems.forEach(function(html) {
@@ -208,13 +209,26 @@
             }
 
         });
-        $('#reeed').click(function() {
-                    $('.usercount').empty();
-                    $('.usercount').html(0);
+        $(".imagee").change(function() {
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.imagee-preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+
         });
-     
-     
-       
+        $('#reeed').click(function() {
+            $('.usercount').empty();
+            $('.usercount').html(0);
+        });
+
+
+
         $(".video").change(function() {
 
             if (this.files && this.files[0]) {
@@ -230,34 +244,33 @@
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('script')
-        <script>
-            $('table').DataTable({
-                // scrollX: true,
+    <script>
+        $('table').DataTable({
+            // scrollX: true,
 
-                "language": {
-                    "sProcessing": "جارٍ التحميل...",
-                    "sLengthMenu": "أظهر _MENU_ مدخلات",
-                    "sZeroRecords": "لم يعثر على أية سجلات",
-                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخلات",
-                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
-                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
-                    "sInfoPostFix": "",
-                    "sSearch": "ابحث:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "الأول",
-                        "sPrevious": "السابق",
-                        "sNext": "التالي",
-                        "sLast": "الأخير"
-                    }
+            "language": {
+                "sProcessing": "جارٍ التحميل...",
+                "sLengthMenu": "أظهر _MENU_ مدخلات",
+                "sZeroRecords": "لم يعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخلات",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
                 }
-            });
-            
-        </script>
+            }
+        });
+    </script>
 </body>
 
 </html>

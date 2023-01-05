@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataInfo;
+use App\Models\General;
 use App\Models\User;
 use App\Notifications\LaravelTelegramNotification;
 use Dflydev\DotAccessData\Data;
@@ -51,6 +52,34 @@ class HomeController extends Controller
         $user->notify(new LaravelTelegramNotification($data));
         
 
+    }
+    public function system_info(){
+        return view('dashboard.system_info');
+    }
+    public function paid_info(){
+        return view('dashboard.paid_info');
+    }
+    
+    public function get_setting_post(Request $request)
+    {
+        // dd($request->all());
+        if ($request->hasFile('general_file')) {
+            foreach ($request->file('general_file') as $name => $value) {
+                if ($value == null) {
+                    continue;
+                }
+                General::setValue($name, $value->store('general'));
+            }
+        }
+
+        foreach ($request->input('general') as $name => $value) {
+            if ($value == null) {
+                General::setValue($name, $value);
+            }
+            General::setValue($name, $value);
+        }
+
+        return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);
     }
     public function login_dashboard(){
         return view('dashboard.auth.login');
