@@ -18,10 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','App\Http\Controllers\HomeController@index')->name('first');
-Route::post('/temp','App\Http\Controllers\HomeController@temp')->name('send_post');
-Route::get('verification','App\Http\Controllers\HomeController@verification')->name('verification');
-Route::post('verification','App\Http\Controllers\HomeController@send_verification')->name('send.verification');
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('login','App\Http\Controllers\HomeController@login_dashboard')->name('login');
 Route::post('login_dashboard','App\Http\Controllers\HomeController@login_dashboard_post')->name('login_dashboard_post');
 

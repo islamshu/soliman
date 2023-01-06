@@ -1,0 +1,242 @@
+@extends('layouts.frontend')
+@section('content')
+    <header>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                @foreach (App\Models\Slider::where('status', 1)->get() as $key => $item)
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
+                        @if ($key == 0) class="active" @endif aria-current="true"
+                        aria-label="Slide {{ $key + 1 }}"></button>
+                @endforeach
+
+            </div>
+            <div class="carousel-inner">
+                @foreach (App\Models\Slider::where('status', 1)->get() as $key => $item)
+                    <div class="carousel-item @if ($key == 0) active @endif">
+                        <a href="{{ $item->url }}"><img src="{{ asset('uploads/' . $item->image) }}" class="d-block w-100"
+                                alt="..."></a>
+
+                    </div>
+                @endforeach
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </header>
+
+
+    <div class="container">
+        <div class="category">
+            <h2><span>category</span></h2>
+
+            <div class="row">
+                @foreach (App\Models\Category::where('is_feture', 1)->take(4)->get() as $item)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="category-item ">
+                            <div class="img-box">
+                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                            </div>
+                            <div class="">
+                                <h3>{{ $item->title }}</h3>
+                                <a href="">
+                                    <p>shop now <span><i class="fa-solid fa-arrow-right"></i></span></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="features">
+            <h2>Our Features</h2>
+            <div class="row">
+                @foreach (App\Models\Fteure::get() as $item)
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="item">
+                            <div class="img-item">
+                                <img src="{{ asset('uploads/' . $item->image) }}" alt="">
+                            </div>
+                            <h3>{{ $item->title }}</h3>
+                            <p>{!! $item->body !!}</p>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="products">
+            <h2><span>Our Products</span></h2>
+
+            <!-- <h2 class="m-auto text-center mb-4"> Our Products</h2> -->
+            <div class="owl-carousel owl-one owl-theme">
+                @foreach (App\Models\Product::where('status',1)->inRandomOrder()->limit(5)->get() as $item)
+                    
+                <div class="item">
+                    <a href="">
+
+                        <div class="item-img">
+                            <img src="{{asset('uploads/'.$item->image)  }}" alt="">
+                        </div>
+
+                    
+
+                        <h2>{{ $item->title }}</h2>
+                        {{ get_price($item->id) }}
+                      
+
+                        <a href="" class="btn addToCart"> add to cart <i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="" class="btn buy-now">buy now</a>
+                    </a>
+                </div>
+                @endforeach
+
+              
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="RecentlyAdded">
+            <h1><span>newly added</span></h1>
+            <div class="owl-carousel owl-two owl-theme two mt-3">
+                @foreach (App\Models\Product::where('status',1)->orderby('id','desc')->limit(8)->get() as $item)
+
+                <div class="RecentlyAddedItem">
+                    <span class="type">{{ $item->category->title }}</span>
+                    <h2>{{ $item->title }}</h2>
+                    <div class="img-box">
+                        <img src="{{ asset('uploads/'.$item->image) }}" alt="">
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <h5>{{ $item->price_after_discount }} $</h5>
+                        <a href=""><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                @endforeach
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="bestSeller RecentlyAdded">
+            <h1><span>best seller</span></h1>
+            <div class="owl-carousel owl-two owl-theme two mt-3">
+
+                @foreach (App\Models\Product::where('status',1)->where('is_best',1)->orderby('id','desc')->limit(8)->get() as $item)
+
+                <div class="RecentlyAddedItem">
+                    <span class="type">{{ $item->category->title }}</span>
+                    <h2>{{ $item->title }}</h2>
+                    <div class="img-box">
+                        <img src="{{ asset('uploads/'.$item->image) }}" alt="">
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <h5>{{ $item->price_after_discount }} $</h5>
+                        <a href=""><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="howItWorks">
+            <h2>How It Works</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum facilis nesciunt dolorum!</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="item">
+                        <div class="img-item">
+                            <img src="images/106_Busiess_target.png" alt="">
+                        </div>
+                        <h2>Lorem, ipsum dolor.</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <span>1</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="item">
+                        <div class="img-item">
+                            <img src="images/111_Secure_payment.png" alt="">
+                        </div>
+                        <h2>Lorem, ipsum dolor.</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <span>2</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="item">
+                        <div class="img-item">
+                            <img src="images/114_Secure_payment.png" alt="">
+                        </div>
+                        <h2>Lorem, ipsum dolor.</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <span>3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="joinUs d-flex">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-12 mb-sm-2  d-flex">
+                    <i class="fa-solid fa-paper-plane me-2"></i>
+                    <h4>Lorem ipsum consectetur adipisicing elit.</h4>
+                </div>
+                <div class="col-lg-8 col-12">
+                    <form action="">
+                        <input class="form-control " type="email" placeholder="Enter Email" name=""
+                            id="">
+                        <button class="btn btn-info">send</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+@endsection
