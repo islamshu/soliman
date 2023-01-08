@@ -89,8 +89,7 @@ class StripePaymentController extends Controller
             $orderDet->qty = $details['quantity'];
             $orderDet->price = get_cart_price($id);
             $orderDet->total  = $orderDet->price *  $orderDet->qty;
-        if($orderDet->save()){
-            Session()->forget('cart');
+            $orderDet->save();
         }
         session()->forget('cart');
         return redirect('/')->with('success_flash', 'Order Succeeed');
