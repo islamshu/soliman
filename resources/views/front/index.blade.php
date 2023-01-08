@@ -108,8 +108,8 @@
                         {{ get_price($item->id) }}
                       
 
-                        <a href="" class="btn addToCart"> add to cart <i class="fa-solid fa-cart-shopping"></i></a>
-                        <a href="" class="btn buy-now">buy now</a>
+                        <a class="btn addToCart" onclick="addToCart({{ $item->id }})"> add to cart <i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="{{ route('get_cart') }}" class="btn buy-now">buy now</a>
                     </a>
                 </div>
                 @endforeach
@@ -181,40 +181,21 @@
 
         <div class="howItWorks">
             <h2>How It Works</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum facilis nesciunt dolorum!</p>
             <div class="row">
+                @foreach (App\Models\HowItWork::orderby('order')->get() as $key=>$item)
+                    
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="item">
                         <div class="img-item">
-                            <img src="images/106_Busiess_target.png" alt="">
+                            <img src="{{ asset('uploads/'.$item->image) }}" alt="">
                         </div>
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <span>1</span>
+                        <h2>{{ $item->title }}</h2>
+                        <p>{!! $item->body!!}</p>
+                        <span>{{ $key +1 }}</span>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="img-item">
-                            <img src="images/111_Secure_payment.png" alt="">
-                        </div>
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <span>2</span>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="item">
-                        <div class="img-item">
-                            <img src="images/114_Secure_payment.png" alt="">
-                        </div>
-                        <h2>Lorem, ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        <span>3</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

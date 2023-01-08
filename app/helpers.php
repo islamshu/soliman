@@ -26,3 +26,11 @@ function get_price($item){
     </div>';
     }
 }
+ function get_cart_price($item){
+    $product = Product::find($item);
+    if($product->price_after_discount != null &&  $product->price_after_discount < $product->price ){
+        return $product->price_after_discount;
+    }else{
+        return $product->price;
+    }
+ }

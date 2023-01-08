@@ -14,8 +14,9 @@
         integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" integrity="sha512-SJw7jzjMYJhsEnN/BuxTWXkezA2cRanuB8TdCNMXFJjxG9ZGSKOX5P3j03H6kdMxalKHZ7vlBMB4CagFP/de0A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" integrity="sha512-SJw7jzjMYJhsEnN/BuxTWXkezA2cRanuB8TdCNMXFJjxG9ZGSKOX5P3j03H6kdMxalKHZ7vlBMB4CagFP/de0A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
 
     <title>{{ get_general_value('title') }}</title>
 </head>
@@ -53,7 +54,7 @@
     </div>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/"><img src="{{ asset('uploads/'.$item->image) }}" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="{{ asset('uploads/' .get_general_value('image')) }}" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -62,14 +63,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @foreach (App\Models\Category::get() as $item)
-                        
-                 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" role="button" >
-                            {{ $item->title }}
-                        </a>
-                        
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " href="#" role="button">
+                                {{ $item->title }}
+                            </a>
+
+                        </li>
                     @endforeach
 
 
@@ -90,7 +89,6 @@
             </div>
         </div>
     </nav>
-
 
     @yield('content')
 
@@ -162,6 +160,8 @@
             <p class="mb-0 p-2">store 2022 &copy; all rights reseved</p>
         </div>
     </div>
+    @include('front.flash_meesage')
+
 
 
 
@@ -169,19 +169,95 @@
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"
         integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+  
+    <script>
+           $(document).ready(function() {
+            toastr.options.timeOut = 10000;
+            @if (Session::has('error_flash'))
+                toastr.error('{{ Session::get('error_flash') }}');
+            @elseif(Session::has('success_flash'))
+                toastr.success('{{ Session::get('success_flash') }}');
+            @endif
+        });
+        function reomverfromcart(id){
+            $.ajax({
+                    url: '{{ route('remove.from.cart') }}',
+                    method: "get",
+                    data: {
+                        _token: '{{ csrf_token() }}', 
+                        'id':id 
+                    },
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        function addToCart(id) {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: '{{ route('add.to.cart') }}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'product_id': id
+                },
+                success: function(data) {
+                    if(data.success != 1){
+                        toastr.error(data.message);
+                    }else{
+                        toastr.success(data.message);
+                    }
+
+
+                }
+
+            });
+        }
+        
+        function updatecart(id) {
+            
+          var vall=  '#quantity_'+id;
+          var price = '#price_'+id;
+          var qty = $(vall).val();
+        $.ajax({
+            url: '{{ route('update_cart') }}',
+            method: "patch",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                id: id, 
+                quantity: qty
+            },
+            success: function(data) {
+                    if(data.success != 1){
+                        toastr.error(data.message);
+                    }else{
+                        // alert($(price).text());
+                        $(price).text('$'+data.price);
+                        $('#total_checkout').text(data.total+'$');
+                        toastr.success(data.message);
+
+                    }
+                }
+            
+          
+        });
+    }
+    </script>
+    
 </body>
 
 </html>
