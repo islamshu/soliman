@@ -32,7 +32,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="email"> صورة المنتج :</label>
+                                                    <label for="email"> صورة المنتج :<span style="color: red; size: 15px">*</span></label>
                                                     <input required type="file" class="form-control image" name="image"  id="">
                                                 </div>
                                                 <div class="form-group">
@@ -44,19 +44,19 @@
                                              <br>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="email"> اسم المنتج  :</label>
+                                                    <label for="email"> اسم المنتج  :<span style="color: red; size: 15px">*</span></label>
                                                     <input type="text" required name="title" value="{{ old('title') }}" class="form-control"  id="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="email"> وصف المنتج  :</label>
-                                                    <textarea required name="description" id="" class="form-control" cols="30" rows="5">{{ old('description') }}</textarea>
+                                                    <label for="email"> وصف المنتج  : <span style="color: red; size: 15px">*</span></label>
+                                                    <textarea required name="description" id="" class="form-control ckeditor" cols="30" rows="5">{{ old('description') }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="email"> الفئة   :</label>
+                                                    <label for="email"> الفئة   :<span style="color: red; size: 15px">*</span></label>
                                                     <select required name="category_id" class="form-control" id="">
                                                         <option value="" disabled>اختر الفئة</option>
                                                         @foreach ($categories as $item)
@@ -69,7 +69,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="email"> سعر المنتج  :</label>
+                                                    <label for="email"> سعر المنتج  :<span style="color: red; size: 15px">*</span></label>
                                                     <input type="text" required name="price" value="{{ old('price') }}" class="form-control"  id="">
                                                 </div>
                                             </div>

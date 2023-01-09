@@ -109,7 +109,7 @@
                       
 
                         <a class="btn addToCart" onclick="addToCart({{ $item->id }})"> add to cart <i class="fa-solid fa-cart-shopping"></i></a>
-                        <a href="{{ route('get_cart') }}" class="btn buy-now">buy now</a>
+                        <a onclick="addToCartAndBuy({{ $item->id }})"class="btn buy-now">buy now</a>
                     </a>
                 </div>
                 @endforeach
@@ -141,7 +141,7 @@
 
                     <div class="d-flex justify-content-between">
                         <h5>{{ $item->price_after_discount }} $</h5>
-                        <a href=""><i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 @endforeach
@@ -168,7 +168,7 @@
 
                     <div class="d-flex justify-content-between">
                         <h5>{{ $item->price_after_discount }} $</h5>
-                        <a href=""><i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 @endforeach

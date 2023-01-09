@@ -79,6 +79,7 @@ class StripePaymentController extends Controller
         }
         $order->price = $total;
         $order->status = 'paid';
+        $order->payment_method = 'stripe';
         $order->more_date = json_encode($request->all());
         $order->code = date('Ymd-His').rand(10,99);
         $order->save();
@@ -92,7 +93,7 @@ class StripePaymentController extends Controller
             $orderDet->save();
         }
         session()->forget('cart');
-        return redirect('/')->with('success_flash', 'Order Succeeed');
+        return redirect()->route('get_order',$order->id)->with('success_flash', 'Order Succeeed');
         Session::flash('success', 'Payment successful!');
         return back();
     }

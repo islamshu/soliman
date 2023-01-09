@@ -37,6 +37,14 @@
               </li>
               <li class="is-shown"><a class="menu-item" href="{{ route('paid_info') }}"> اعدادات الدفع</a>
               </li>
+              <li class="is-shown"><a class="menu-item" href="{{ route('about_page') }}">  صفحة من نحن  </a>
+              </li>
+              <li class="is-shown"><a class="menu-item" href="{{ route('returns_exchange_page') }}">  صفحة سياسة الاسترجاع </a>
+              </li>
+              <li class="is-shown"><a class="menu-item" href="{{ route('usage_policy_page') }}">  صفحة سياسة الاستخدام </a>
+              </li>
+
+              
 
               
            

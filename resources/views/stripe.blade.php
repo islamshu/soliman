@@ -1,89 +1,82 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.frontend')
+@section('css')
+    <link rel="stylesheet" href="{{ asset('frontend/css/pay_style.css') }}">
+@endsection
+@section('content')
+    <div class="content pawWays">
 
-<head>
-    <title>Laravel 9 Stripe Payment Gateway Integration Example - LaravelTuts.com</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<style type="text/css">
-    h2 {
-        margin: 80px auto;
-    }
-</style>
-
-<body>
-    <div class="container">
-
-        <h2 class="text-center">Laravel 9 Stripe Payment Gateway Integration Example - LaravelTuts.com</h2>
-
-        <div class="row">
-            <div class="col-md-7 col-md-offset-3">
-                <div class="panel panel-default credit-card-box">
-                    <div class="panel-heading display-table">
-                        <h3 class="panel-title text-center"><strong>Payment Details</strong></h3>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Visa</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                    type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">MasterCard</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+                <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
+                    data-cc-on-file="false" data-stripe-publishable-key="{{ get_general_value('STRIPE_KEY') }}"
+                    id="payment-form">
+                    @csrf
+                    @guest
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-item required">
+                                <label for="">User Name</label>
+                                <input type="text" name="user_name"class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-item required">
+                                <label for="">Email</label>
+                                <input name="email" type='email' placeholder="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 required">
+                            <div class="input-item">
+                                <label for="">Phone</label>
+                                <input name="phone" type='tel' placeholder="" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
+                    @endguest
+                    <div class="required">
+                        <label for="">Name on Card </label>
+                        <input class='form-control' maxlength='20' type='text'>
+                    </div>
+                    <div class="required">
+                        <label for="">Card Number</label>
+                        <input autocomplete='off' class='form-control card-number' pattern="(\d{4}\s?){4}" maxlength='19'
+                            type='text'>
+                    </div>
 
-                        @if (Session::has('success'))
-                            <div class="alert alert-success text-center">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                <p>{{ Session::get('success') }}</p>
-                            </div>
-                        @endif
+                    <div class="">
 
-                        <form role="form" action="{{ route('stripe.post') }}" method="post"
-                            class="require-validation" data-cc-on-file="false"
-                            data-stripe-publishable-key="{{ get_general_value('STRIPE_KEY') }}" id="payment-form">
-                            @csrf
-                            @guest
-                            <div class='form-row row'>
-                                <div class='col-xs-6 form-group required'>
-                                    <label class='control-label'>User Name</label>
-                                    <input class='form-control' name="user_name"type='text'>
-                                </div>
-                                <div class='col-xs-6 form-group required'>
-                                    <label class='control-label'>Email</label>
-                                    <input class='form-control' name="email" type='email'>
-                                </div>
-                                <div class='col-xs-6 form-group required'>
-                                    <label class='control-label'>Phone</label>
-                                    <input class='form-control' name="phone" type='tel'>
-                                </div>
-                            </div>
-                            
-                            @endguest
-                          
-
-                            <div class='form-row row'>
-                                <div class='col-xs-12 form-group required'>
-                                    <label class='control-label'>Name on Card</label>
-                                    <input class='form-control' maxlength='20' type='text'>
-                                </div>
-                            </div>
-
-                            <div class='form-row row'>
-                                <div class='col-xs-12 form-group card required'>
-                                    <label class='control-label'>Card Number</label>
-                                    <input autocomplete='off' class='form-control card-number' pattern="(\d{4}\s?){4}"
-                                        maxlength='19' type='text'>
-                                </div>
-                            </div>
-
-                            <div class='form-row row'>
-                                <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                    <label class='control-label'>CVC</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="input-item-sm">
+                                    <label for="">CVC</label>
                                     <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311'
                                         maxlength='3' type='text'>
                                 </div>
-                                <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>Expiration Month</label> <input
-                                        class='form-control card-expiry-month' placeholder='MM' maxlength='2'
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="input-item-sm">
+                                    <label for="">Expiration Month</label>
+                                    <input class='form-control card-expiry-month MM' placeholder='MM' maxlength='2'
                                         type='text'>
                                 </div>
-                                <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>Expiration Year</label>
-                                    <input class='form-control card-expiry-year' placeholder='YYYY' maxlength='4'
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="input-item-sm">
+                                    <label for="">Expiration Year</label>
+                                    <input class='form-control card-expiry-year YYYY' placeholder='YYYY' maxlength='4'
                                         type='text'>
                                 </div>
                             </div>
@@ -93,104 +86,141 @@
                                     <div class='alert-danger alert'>Please correct the errors and try again.</div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now
-                                        (${{ $total }})</button>
-                                </div>
-                            </div>
+                    </div>
 
-                        </form>
+
+
+                    <button class="btn btn-info btn goBay" type="submit">Go To Pay {{ $total }} $  </button>
+
+
+
+
+
+                </form>
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                tabindex="0">
+                <div class="img-box">
+                    <img src="https://m.foolcdn.com/media/affiliates/original_images/PayPal_Logo.png" alt="">
+                </div>
+
+                <p>You will be redirected to the PayPal payment page.</p>
+
+                <form action="{{ route('make.payment') }}" method="post">
+                @csrf
+                @guest
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-item required">
+                            <label for="">User Name</label>
+                            <input type="text" name="user_name"class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-item required">
+                            <label for="">Email</label>
+                            <input name="email" type='email' placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 required">
+                        <div class="input-item">
+                            <label for="">Phone</label>
+                            <input name="phone" type='tel' placeholder="" class="form-control">
+                        </div>
                     </div>
                 </div>
+                @endguest
+                <button class="btn btn-info btn goBay" type="submit">Go To Pay {{ $total }} $  </button>
+                </form>
             </div>
         </div>
 
     </div>
+@endsection
+@section('script')
+    <script src="{{ asset('frontend/js/pay_main.js') }}"></script>
 
-</body>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+        $('.card-number').keyup(function(e) {
 
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script>
-    $('.card-number').keyup(function(e) {
-     
-        // console.log(e.keyCode);
-        if (e.keyCode !== 8) {
-            if (this.value.length === 4 || this.value.length === 9 || this.value.length === 14) {
-                this.value = this.value += ' ';
-            }
-        }
-    });
-</script>
-<script type="text/javascript">
-    $(function() {
-
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Payment Code
-        --------------------------------------------
-        --------------------------------------------*/
-
-        var $form = $(".require-validation");
-
-        $('form.require-validation').bind('submit', function(e) {
-            var $form = $(".require-validation"),
-                inputSelector = ['input[type=email]', 'input[type=password]',
-                    'input[type=text]', 'input[type=file]',
-                    'textarea'
-                ].join(', '),
-                $inputs = $form.find('.required').find(inputSelector),
-                $errorMessage = $form.find('div.error'),
-                valid = true;
-            $errorMessage.addClass('hide');
-
-            $('.has-error').removeClass('has-error');
-            $inputs.each(function(i, el) {
-                var $input = $(el);
-                if ($input.val() === '') {
-                    $input.parent().addClass('has-error');
-                    $errorMessage.removeClass('hide');
-                    e.preventDefault();
+            // console.log(e.keyCode);
+            if (e.keyCode !== 8) {
+                if (this.value.length === 4 || this.value.length === 9 || this.value.length === 14) {
+                    this.value = this.value += ' ';
                 }
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Payment Code
+            --------------------------------------------
+            --------------------------------------------*/
+
+            var $form = $(".require-validation");
+
+            $('form.require-validation').bind('submit', function(e) {
+                var $form = $(".require-validation"),
+                    inputSelector = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'
+                    ].join(', '),
+                    $inputs = $form.find('.required').find(inputSelector),
+                    $errorMessage = $form.find('div.error'),
+                    valid = true;
+                $errorMessage.addClass('hide');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorMessage.removeClass('hide');
+                        e.preventDefault();
+                    }
+                });
+
+                if (!$form.data('cc-on-file')) {
+                    e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-number').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeResponseHandler);
+                }
+
+
             });
 
-            if (!$form.data('cc-on-file')) {
-                e.preventDefault();
-                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                Stripe.createToken({
-                    number: $('.card-number').val(),
-                    cvc: $('.card-cvc').val(),
-                    exp_month: $('.card-expiry-month').val(),
-                    exp_year: $('.card-expiry-year').val()
-                }, stripeResponseHandler);
-            }
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Response Handler
+            --------------------------------------------
+            --------------------------------------------*/
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    $('.error')
+                        .removeClass('hide')
+                        .find('.alert')
+                        .text(response.error.message);
+                } else {
+                    /* token contains id, last4, and card type */
+                    var token = response['id'];
 
+                    $form.find('input[type=text]').empty();
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    $form.get(0).submit();
+                }
+            }
 
         });
-
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Response Handler
-        --------------------------------------------
-        --------------------------------------------*/
-        function stripeResponseHandler(status, response) {
-            if (response.error) {
-                $('.error')
-                    .removeClass('hide')
-                    .find('.alert')
-                    .text(response.error.message);
-            } else {
-                /* token contains id, last4, and card type */
-                var token = response['id'];
-
-                $form.find('input[type=text]').empty();
-                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                $form.get(0).submit();
-            }
-        }
-
-    });
-</script>
-
-</html>
+    </script>
+@endsection
