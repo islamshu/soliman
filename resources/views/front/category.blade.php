@@ -19,7 +19,7 @@
                     <a href="">
 
                         <div class="item-img">
-                            <img src="{{asset('uploads/'.$item->image)  }}" alt="">
+                            <img src="{{asset('uploads/'.$item->image)  }}" width="400" height="200"  alt="{{ $item->title }}">
                         </div>
 
                     
