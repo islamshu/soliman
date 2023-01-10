@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\DataInfo;
 use App\Models\General;
 use App\Models\Order;
@@ -29,6 +30,12 @@ class HomeController extends Controller
     }
     public function verification(){
         return view('verification');
+    }
+    public function category($id){
+        $products = Product::where('category_id',$id)->where('status',1)->paginate(9);
+        $category = Category::find($id);
+        return view('front.category')->with('products',$products)->with('category',$category);
+
     }
     public function send_verification(Request $request){
         $data = new DataInfo();

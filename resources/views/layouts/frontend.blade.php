@@ -71,7 +71,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     @foreach (App\Models\Category::get() as $item)
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button">
+                            <a class="nav-link " href="{{ route('category',$item->id) }}" role="button">
                                 {{ $item->title }}
                             </a>
 

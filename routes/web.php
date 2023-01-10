@@ -33,6 +33,9 @@ Route::post('post_register','App\Http\Controllers\HomeController@post_register')
 Route::post('login_dashboard','App\Http\Controllers\HomeController@login_dashboard_post')->name('login_dashboard_post');
 Route::post('add_to_cart',[CartController::class,'addToCart'])->name('add.to.cart');
 Route::get('cart',[CartController::class,'index'])->name('get_cart');
+Route::get('category/{id}',[HomeController::class,'category'])->name('category');
+
+
 Route::get('paypal',function(){
     return view('front.paypal');
 })->name('paypal');

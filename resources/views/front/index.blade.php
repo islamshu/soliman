@@ -50,7 +50,7 @@
                             </div>
                             <div class="">
                                 <h3>{{ $item->title }}</h3>
-                                <a href="">
+                                <a href="{{ route('category',$item->id) }}">
                                     <p>shop now <span><i class="fa-solid fa-arrow-right"></i></span></p>
                                 </a>
                             </div>
