@@ -19,7 +19,7 @@
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                 tabindex="0">
                 <div class="img-box">
-                    <img src="https://woocommerce.com/wp-content/uploads/2011/12/stripe-logo-blue.png" alt="">
+                    <img src="https://woocommerce.com/wp-content/uploads/2011/12/stripe-logo-blue.png" width="400" alt="">
                 </div>
                 <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
                     data-cc-on-file="false" data-stripe-publishable-key="{{ get_general_value('STRIPE_KEY') }}"
