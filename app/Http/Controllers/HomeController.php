@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('verification');
     }
     public function category($id){
-        $products = Product::where('category_id',$id)->where('status',1)->paginate(9);
+        $products = Product::where('category_id',$id)->where('status',1)->paginate(5);
         $category = Category::find($id);
         return view('front.category')->with('products',$products)->with('category',$category);
 
