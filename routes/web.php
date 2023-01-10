@@ -57,7 +57,7 @@ Route::post('track_order_post', [HomeController::class,'track_order_post'])->nam
 
 
 Route::controller(StripePaymentController::class)->group(function(){
-    Route::get('stripe', 'stripe')->name('stripe');
+    Route::get('payment_page', 'stripe')->name('stripe');
     Route::post('stripe', 'stripePost')->name('stripe.post');
 });
 
