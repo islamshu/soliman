@@ -25,6 +25,10 @@ class HomeController extends Controller
         $mail= MailSender::orderby('id','desc')->get();
         return view('dashboard.mails.index')->with('mails',$mail);
     }
+    public function socail(){
+        return view('dashboard.socail');
+
+    }
     public function delete_mail($id){
         $mail = MailSender::find($id)->delete();
         return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);

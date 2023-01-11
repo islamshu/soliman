@@ -45,6 +45,8 @@
           <ul class="menu-content" style="">
               <li class="is-shown"><a class="menu-item" href="{{ route('system_info') }}">البيانات الاساسية</a>
               </li>
+              <li class="is-shown"><a class="menu-item" href="{{ route('socail') }}">  اعدادات السوشل ميديا   </a>
+              </li>
               <li class="is-shown"><a class="menu-item" href="{{ route('paid_info') }}"> اعدادات الدفع</a>
               </li>
               <li class="is-shown"><a class="menu-item" href="{{ route('about_page') }}">  صفحة من نحن  </a>

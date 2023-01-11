@@ -83,7 +83,9 @@ Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'dashboard'], fun
     Route::get('about_page',[HomeController::class,'about_page'])->name('about_page');
     Route::get('usage_policy_page',[HomeController::class,'usage_policy_page'])->name('usage_policy_page');
     Route::get('returns_exchange',[HomeController::class,'returns_exchange_page'])->name('returns_exchange_page');
+    Route::get('socail',[HomeController::class,'socail'])->name('socail');
 
+    
     Route::get('mails',[HomeController::class,'mails'])->name('mails');
     Route::delete('delete_mail/{id}',[HomeController::class,'delete_mail'])->name('delete_mail');
 
