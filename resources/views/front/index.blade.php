@@ -64,7 +64,7 @@
         </div>
     </div>
 
-
+    @if(get_general_value('is_feture') == 1)
     <div class="container">
         <div class="features">
             <h2>Our Features</h2>
@@ -84,6 +84,7 @@
             </div>
         </div>
     </div>
+    @endif
 
 
 
@@ -176,6 +177,7 @@
             </div>
         </div>
     </div>
+    @if(get_general_value('how_work') == 1)
 
     <div class="container">
 
@@ -199,6 +201,7 @@
             </div>
         </div>
     </div>
+    @endif
 
 
 

@@ -94,4 +94,10 @@ Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'dashboard'], fun
     Route::get('product_update',[ProductController::class,'update_status'])->name('products.update.status');
     Route::get('product_update_best',[ProductController::class,'update_status_best'])->name('products.update.best');
     Route::get('sliders_update',[SliderController::class,'update_status'])->name('sliders.update.status');
+    Route::get('update_stauts_feture',[HomeController::class,'update_stauts_feture'])->name('is_feturs.update.best');
+    Route::get('update_stauts_how',[HomeController::class,'update_stauts_how'])->name('how_work.update.best');
+
+    
+
+    
 });

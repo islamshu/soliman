@@ -26,6 +26,9 @@
                                     @include('dashboard.parts._error')
                                     @include('dashboard.parts._success')
                                     <br>
+                                    <input type="checkbox" data-id="{{ get_general_value('how_work') }}"class="js-switch"
+                                    {{ get_general_value('how_work') == 1 ? 'checked' : '' }}>
+
 
 
                                     <table class="table table-striped table-bordered zero-configuration" id="storestable">
@@ -123,4 +126,20 @@
                 }
             });
     </script>
+    <script>
+        $(".js-switch").change(function() {
+         let status = $(this).prop('checked') === true ? 1 : 0;
+         $.ajax({
+             type: "get",
+             dataType: "json",
+             url: '{{ route('how_work.update.best') }}',
+             data: {
+                 'status': status,
+             },
+             success: function(data) {
+                 console.log(data.message);
+             }
+         });
+     });
+ </script>
 @endsection

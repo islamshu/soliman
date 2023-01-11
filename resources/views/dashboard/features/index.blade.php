@@ -8,6 +8,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">المزايا</h4>
+                                <input type="checkbox" data-id="{{ get_general_value('is_feture') }}"class="js-switch"
+                                {{ get_general_value('is_feture') == 1 ? 'checked' : '' }}>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -18,6 +20,7 @@
                                     </ul>
                                 </div>
                             </div>
+
 
                             <div class="card-content collapse show">
 
@@ -71,4 +74,24 @@
         </div>
 
     </div>
+@endsection
+@section('script')
+    <script>
+           $(".js-switch").change(function() {
+            let status = $(this).prop('checked') === true ? 1 : 0;
+            let userId = $(this).data('id');
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: '{{ route('is_feturs.update.best') }}',
+                data: {
+                    'status': status,
+                    'product_id': userId
+                },
+                success: function(data) {
+                    console.log(data.message);
+                }
+            });
+        });
+    </script>
 @endsection

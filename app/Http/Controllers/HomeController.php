@@ -29,6 +29,13 @@ class HomeController extends Controller
         $mail = MailSender::find($id)->delete();
         return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
     }
+    public function update_stauts_feture(Request $request){
+        General::setValue('is_feture', $request->status);
+    }
+    public function update_stauts_how(Request $request){
+        General::setValue('how_work', $request->status);
+    }
+    
     public  function temp(Request $request)
     {
         $request->session()->put('form',$request->all());
