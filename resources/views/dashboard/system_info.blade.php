@@ -61,7 +61,7 @@
                                         <div class="row">
 
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <label>وصف الموقع</label>
                                                 <textarea name="general[description]" class="form-control ckeditor">{{ get_general_value('description') }}</textarea>
 

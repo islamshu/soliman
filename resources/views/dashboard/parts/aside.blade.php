@@ -24,9 +24,19 @@
               <span class="menu-title">الميزات       </span></a>
          </li>
          <li class="nav-item  ">
+          <a href="{{ route('how_it_works.index') }}">
+              <i class="fa fa-star"></i>
+              <span class="menu-title">كيف يعمل الموقع       </span></a>
+         </li>
+         <li class="nav-item  ">
           <a href="{{ route('prodcuts.index') }}">
               <i class="fa fa-product-hunt"></i>
               <span class="menu-title">المنتجات       </span></a>
+         </li>
+         <li class="nav-item  ">
+          <a href="{{ route('mails') }}">
+              <i class="fa fa-product-hunt"></i>
+              <span class="menu-title">طلبات البريد الالكتروني       </span></a>
          </li>
          <li class="nav-item has-sub ">
           <a href="#">
