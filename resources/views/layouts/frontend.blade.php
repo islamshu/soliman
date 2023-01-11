@@ -308,6 +308,27 @@
 
             });
         }
+        $( ".send_mail" ).click(function() {
+          var mail = $('#mail_sender').val();
+          $.ajax({
+                url: '{{ route('send_mail') }}',
+                method: "post",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    email: mail,
+                },
+                success: function(data) {
+                    if (data.success != 1) {
+                        toastr.error(data.message);
+                    } else {
+                        toastr.success(data.message);
+                        $('#mail_sender').val('')
+                    }
+                }
+            });
+        });
+        
+
     </script>
 
 </body>

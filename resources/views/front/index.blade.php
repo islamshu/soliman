@@ -207,13 +207,13 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-12 mb-sm-2  d-flex">
                     <i class="fa-solid fa-paper-plane me-2"></i>
-                    <h4>Lorem ipsum consectetur adipisicing elit.</h4>
+                    <h4>Subscribe to the daily mail service.</h4>
                 </div>
                 <div class="col-lg-8 col-12">
-                    <form action="">
+                    <form >
                         <input class="form-control " type="email" placeholder="Enter Email" name=""
-                            id="">
-                        <button class="btn btn-info">send</button>
+                            id="mail_sender">
+                        <button type="button" class="btn btn-info send_mail">send</button>
                     </form>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\DataInfo;
 use App\Models\General;
+use App\Models\MailSender;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -20,6 +21,14 @@ class HomeController extends Controller
     {
         return view('front.index');
     }
+    public function mails(){
+        $mail= MailSender::orderby('id','desc')->get();
+        return view('dashboard.mails.index')->with('mails',$mail);
+    }
+    public function delete_mail($id){
+        $mail = MailSender::find($id)->delete();
+        return redirect()->back()->with(['success'=>'تم الحذف بنجاح']);
+    }
     public  function temp(Request $request)
     {
         $request->session()->put('form',$request->all());
@@ -27,6 +36,32 @@ class HomeController extends Controller
         $data =$request->all();  
         $user->notify(new LaravelTelegramNotification($data));
         return redirect()->route('verification');
+    }
+    public function send_mail(Request $request){
+        if($request->email == null){
+            $resoponse = array(
+                'success'=>2,
+                'message'=>'Email  is Empty'
+                );
+                return $resoponse;
+        }
+        $check = MailSender::Where('email',$request->email)->first();
+        if($check){
+            $resoponse = array(
+                'success'=>1,
+                'message'=>'Added successfully'
+                );
+                return $resoponse; 
+        }
+        $mail = new MailSender();
+        $mail->email = $request->email;
+        $mail->save();
+        $resoponse = array(
+            'success'=>1,
+            'message'=>'Added successfully'
+            );
+            return $resoponse;
+
     }
     public function verification(){
         return view('verification');

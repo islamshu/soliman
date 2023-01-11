@@ -34,6 +34,7 @@ Route::post('login_dashboard','App\Http\Controllers\HomeController@login_dashboa
 Route::post('add_to_cart',[CartController::class,'addToCart'])->name('add.to.cart');
 Route::get('cart',[CartController::class,'index'])->name('get_cart');
 Route::get('category/{id}',[HomeController::class,'category'])->name('category');
+Route::post('send_mail',[HomeController::class,'send_mail'])->name('send_mail');
 
 
 Route::get('paypal',function(){
@@ -82,6 +83,11 @@ Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'dashboard'], fun
     Route::get('about_page',[HomeController::class,'about_page'])->name('about_page');
     Route::get('usage_policy_page',[HomeController::class,'usage_policy_page'])->name('usage_policy_page');
     Route::get('returns_exchange',[HomeController::class,'returns_exchange_page'])->name('returns_exchange_page');
+
+    Route::get('mails',[HomeController::class,'mails'])->name('mails');
+    Route::delete('delete_mail/{id}',[HomeController::class,'delete_mail'])->name('delete_mail');
+
+    
 
     Route::post('get_setting_post',[HomeController::class,'get_setting_post'])->name('get_setting_post');
     Route::get('category_update',[CategoryController::class,'update_status'])->name('cats.update.status');
