@@ -134,6 +134,13 @@
                             @if(get_general_value('email') != null)
                             <li><a href="mailto:{{ get_general_value('email') }}"><i class="fa-solid fa-envelope"></i></a></li>
                             @endif
+                            @if(get_general_value('telegram') != null)
+                            <li><a href="{{ get_general_value('telegram') }}"><i style="width: 100%;margin-right: 10px;height: 24px;" class="fa-brands fa-telegram"></i></a></li>
+                            @endif
+                            @if(get_general_value('snapchat') != null)
+                            <li><a href="{{ get_general_value('snapchat') }}"><i style="width: 100%;margin-right: 10px;height: 24px;" class="fa-brands fa-snapchat"></i></a></li>
+                            @endif
+                            
                           
 
                         </ul>

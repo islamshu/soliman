@@ -48,7 +48,11 @@ class SliderController extends Controller
         ]);
         $slider = new Slider();
         $slider->image = $request->image->store('sliders');
-        $slider->url = $request->url;
+        if($slider->url == null){
+            $slider->url = '#';  
+        }else{
+            $slider->url = $request->url;
+        }
         $slider->save();
         return redirect()->route('sliders.index')->with(['success'=>'تم الاضافة بنجاح']);
     }
@@ -72,7 +76,7 @@ class SliderController extends Controller
      */
     public function edit(Slider $slider)
     {
-        //
+        return view('dashboard.sliders.edit')->with('slider',$slider);
     }
 
     /**
@@ -84,7 +88,17 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        //
+        $request->validate([
+            'url'=>'required'
+        ]);
+        $slider->image = $request->image->store('sliders');
+        if($slider->url == null){
+            $slider->url = '#';  
+        }else{
+            $slider->url = $request->url;
+        }
+        $slider->save();
+        return redirect()->route('sliders.index')->with(['success'=>'تم التعديل بنجاح']);
     }
 
     /**

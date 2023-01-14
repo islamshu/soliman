@@ -54,6 +54,7 @@
                                                             {{ $item->status == 1 ? 'checked' : '' }}>
                                                     </td>
                                                     <td>
+                                                        <a href="{{ route('sliders.edit',$item->id) }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
                                                         <form style="display: inline"
                                                         action="{{ route('sliders.destroy', $item->id) }}"
                                                         method="post">

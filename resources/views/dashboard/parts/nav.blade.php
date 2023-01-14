@@ -5,7 +5,7 @@
         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
         <li class="nav-item">
           <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <img class="brand-logo" alt="modern admin logo"  src="{{ asset('uploads/'.get_general_value('image')) }}" height="70" width="100">  
+            <img class="brand-logo" alt="modern admin logo"  src="{{ asset('uploads/'.get_general_value('image')) }}" height="50" width="200">  
           </a>
         </li>
         <li class="nav-item d-md-none">

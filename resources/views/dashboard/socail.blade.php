@@ -54,6 +54,16 @@
                                                 <input type="string" name="general[whatsapp]"
                                                     value="{{ get_general_value('whatsapp') }}" class="form-control">
                                             </div>
+                                            <div class="col-md-6">
+                                                <label>  رقم التلجرام   </label>
+                                                <input type="string" name="general[telegram]"
+                                                    value="{{ get_general_value('telegram') }}" class="form-control">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>  رابط السناب شات    </label>
+                                                <input type="string" name="general[snapchat]"
+                                                    value="{{ get_general_value('snapchat') }}" class="form-control">
+                                            </div>
                                         </div>
                                         <br>
                                         
