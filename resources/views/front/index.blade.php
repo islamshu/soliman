@@ -173,6 +173,7 @@
                     <div class="img-box">
                         <img src="{{ asset('uploads/'.$item->image) }}" alt="">
                     </div>
+                    
 
                     <div class="d-flex justify-content-between">
                         <h5>{{ $item->price_after_discount }} $</h5>

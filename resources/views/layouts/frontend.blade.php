@@ -18,6 +18,13 @@
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" integrity="sha512-SJw7jzjMYJhsEnN/BuxTWXkezA2cRanuB8TdCNMXFJjxG9ZGSKOX5P3j03H6kdMxalKHZ7vlBMB4CagFP/de0A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+    <style>
+        :root{
+            --notMainColor :{{ get_general_value('not_main_color') }};
+            --mainColor:{{ get_general_value('main_color') }};
+
+        }
+    </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
     @yield('css')
 
@@ -94,21 +101,21 @@
 
                 </div>
 
-                                    @auth
+                    @auth
 
 
                     <div class="upper-bar-item d-flex align-items-center">
                         <i class="fa-solid fa-user"></i>
-                        <p><a href="{{ route('account') }}">My account</a></p>
+                        <p style="margin: 10px"><a href="{{ route('account') }}" style="text-decoration: none" >My account</a></p>
                     </div>
                     <div class="upper-bar-item d-flex align-items-center">
                         <i class="fa-solid fa-user"></i>
-                        <p><a href="{{ route('logout') }}">Logout</a></p>
+                        <p style="margin: 10px"><a href="{{ route('logout') }}" style="text-decoration: none">Logout</a></p>
                     </div>
                     @else
                     <div class="upper-bar-item d-flex align-items-center">
                         <i class="fa-solid fa-user"></i>
-                        <p><a href="{{ route('register') }}">Register</a> | <a href="{{ route('login') }}">Login</a></p>
+                        <p style="margin: 10px"><a href="{{ route('register') }}" style="text-decoration: none">Register</a> | <a href="{{ route('login') }}">Login</a></p>
                     </div>
                     @endauth
 
