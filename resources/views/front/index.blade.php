@@ -45,6 +45,8 @@
                 @foreach (App\Models\Category::where('is_feture', 1)->take(4)->get() as $item)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="category-item ">
+                        <a href="{{ route('category',$item->id) }}" class="c-link">
+
                             <div class="img-box">
                                 <img src="{{ asset('uploads/' . $item->image) }}" alt="">
                             </div>
@@ -54,6 +56,8 @@
                                     <p>shop now <span><i class="fa-solid fa-arrow-right"></i></span></p>
                                 </a>
                             </div>
+
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -95,7 +99,7 @@
             <!-- <h2 class="m-auto text-center mb-4"> Our Products</h2> -->
             <div class="owl-carousel owl-one owl-theme">
                 @foreach (App\Models\Product::where('status',1)->inRandomOrder()->limit(5)->get() as $item)
-                    
+
                 <div class="item">
                     <a href="">
 
@@ -103,11 +107,11 @@
                             <img src="{{asset('uploads/'.$item->image)  }}" alt="">
                         </div>
 
-                    
+
 
                         <h2>{{ $item->title }}</h2>
                         {{ get_price($item->id) }}
-                      
+
 
                         <a class="btn addToCart" onclick="addToCart({{ $item->id }})"> add to cart <i class="fa-solid fa-cart-shopping"></i></a>
                         <a onclick="addToCartAndBuy({{ $item->id }})"class="btn buy-now">buy now</a>
@@ -115,7 +119,7 @@
                 </div>
                 @endforeach
 
-              
+
 
 
 
@@ -134,6 +138,7 @@
                 @foreach (App\Models\Product::where('status',1)->orderby('id','desc')->limit(8)->get() as $item)
 
                 <div class="RecentlyAddedItem">
+                <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}">
                     <span class="type">{{ $item->category->title }}</span>
                     <h2>{{ $item->title }}</h2>
                     <div class="img-box">
@@ -144,6 +149,7 @@
                         <h5>{{ $item->price_after_discount }} $</h5>
                         <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
+                    </a>
                 </div>
                 @endforeach
 
@@ -161,6 +167,7 @@
                 @foreach (App\Models\Product::where('status',1)->where('is_best',1)->orderby('id','desc')->limit(8)->get() as $item)
 
                 <div class="RecentlyAddedItem">
+                    <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}">
                     <span class="type">{{ $item->category->title }}</span>
                     <h2>{{ $item->title }}</h2>
                     <div class="img-box">
@@ -171,6 +178,7 @@
                         <h5>{{ $item->price_after_discount }} $</h5>
                         <a href="{{ route('single_product',Crypt::encrypt($item->id)) }}"><i class="fa-solid fa-arrow-right"></i></a>
                     </div>
+                    </a>
                 </div>
                 @endforeach
 
@@ -185,7 +193,7 @@
             <h2>How It Works</h2>
             <div class="row">
                 @foreach (App\Models\HowItWork::orderby('order')->get() as $key=>$item)
-                    
+
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="item">
                         <div class="img-item">

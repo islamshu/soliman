@@ -26,7 +26,7 @@
 
 <body>
 
-    <div class="upper-bar">
+    <!-- <div class="upper-bar">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-3">
@@ -34,11 +34,11 @@
                 </div>
 
                 <div class="col-lg-6 d-flex align-items-center justify-content-end">
-                 
-                 
+
+
                     @auth
-                        
-                    
+
+
                     <div class="upper-bar-item d-flex align-items-center">
                         <i class="fa-solid fa-user"></i>
                         <p><a href="{{ route('account') }}">My account</a></p>
@@ -57,7 +57,8 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
+    
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
             <a class="navbar-brand" href="/"><img src="{{ asset('uploads/' . get_general_value('image')) }}"
@@ -92,6 +93,26 @@
                     <a href="{{ route('get_cart') }}"><i class="fa-solid fa-cart-shopping"></i><span class="ms-1"></span></a>
 
                 </div>
+
+                                    @auth
+
+
+                    <div class="upper-bar-item d-flex align-items-center">
+                        <i class="fa-solid fa-user"></i>
+                        <p><a href="{{ route('account') }}">My account</a></p>
+                    </div>
+                    <div class="upper-bar-item d-flex align-items-center">
+                        <i class="fa-solid fa-user"></i>
+                        <p><a href="{{ route('logout') }}">Logout</a></p>
+                    </div>
+                    @else
+                    <div class="upper-bar-item d-flex align-items-center">
+                        <i class="fa-solid fa-user"></i>
+                        <p><a href="{{ route('register') }}">Register</a> | <a href="{{ route('login') }}">Login</a></p>
+                    </div>
+                    @endauth
+
+
 
             </div>
         </div>
@@ -140,8 +161,8 @@
                             @if(get_general_value('snapchat') != null)
                             <li><a href="{{ get_general_value('snapchat') }}"><i style="width: 100%;margin-right: 10px;height: 24px;" class="fa-brands fa-snapchat"></i></a></li>
                             @endif
-                            
-                          
+
+
 
                         </ul>
                     </div>
@@ -159,7 +180,7 @@
                             <li><a href="{{ route('usage_policy') }}">usage Policy</a></li>
                             <li><a href="{{ route('track_order') }}">Track Your Order</a></li>
 
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -334,7 +355,7 @@
                 }
             });
         });
-        
+
 
     </script>
 
