@@ -52,12 +52,11 @@
                             </div>
                             <div class="">
                                 <h3>{{ $item->title }}</h3>
-                                <a href="{{ route('category',$item->id) }}">
                                     <p>shop now <span><i class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
+                               
                             </div>
 
-                            </a>
+                        </a>
                         </div>
                     </div>
                 @endforeach
@@ -173,7 +172,7 @@
                     <div class="img-box">
                         <img src="{{ asset('uploads/'.$item->image) }}" alt="">
                     </div>
-                    
+
 
                     <div class="d-flex justify-content-between">
                         <h5>{{ $item->price_after_discount }} $</h5>

@@ -17,7 +17,7 @@ $(document).ready(function(){
                 items:2,
             },
             1000 :{
-                items:3,
+                items:4,
             }
         }
     });
@@ -38,4 +38,31 @@ $(document).ready(function(){
             }
         }
     });
+
+
+    var cleave = new Cleave('.Number', {
+        creditCard: true,
+        onCreditCardTypeChanged: function (type) {
+            
+        }
+    });
+
+
+    var cleave = new Cleave('.MM', {
+        date: true,
+        datePattern: ['M']
+    });
+
+    var cleave2 = new Cleave('.YYYY', {
+        date: true,
+        datePattern: ['Y']
+    });
+
+
+    var cleave3 = new Cleave('.CVC', {
+        blocks: [3],
+        uppercase: true
+    });
+
+
   });
