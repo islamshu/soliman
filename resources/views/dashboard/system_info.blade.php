@@ -56,22 +56,15 @@
                                                 <input type="string" name="general[title]"
                                                     value="{{ get_general_value('title') }}" class="form-control">
                                             </div>
-                                        </div>
-                                     
-
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6">
+                                              <div class="col-md-6">
                                                 <label>اللون الاساسي للموقع  </label>
                                                 <input type="color" name="general[main_color]"
                                                     value="{{ get_general_value('main_color') }}" class="form-control">
                                             </div>
-                                            <div class="col-md-6">
-                                                <label>اللون الثانوي للموقع  </label>
-                                                <input type="color" name="general[notMainColor]"
-                                                    value="{{ get_general_value('notMainColor') }}" class="form-control">
-                                            </div>
                                         </div>
+                                     
+
+                                      
 
                                         
                                         <br>
