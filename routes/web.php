@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FteureController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HowItWorkController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\ProductController;
@@ -75,9 +76,14 @@ Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'dashboard'], fun
     Route::resource('fteures',FteureController::class);
     Route::resource('sliders',SliderController::class);
     Route::resource('categories',CategoryController::class);
+    Route::resource('menus',MenuController::class);
+
     Route::resource('prodcuts',ProductController::class);
     Route::resource('how_it_works',HowItWorkController::class);
     Route::post('updateOrder',[HowItWorkController::class,'updateOrder'])->name('menu_update');
+    Route::post('updateOrder_menu',[MenuController::class,'updateOrder'])->name('menu_home_update');
+
+    
     Route::get('system_info',[HomeController::class,'system_info'])->name('system_info');
     Route::get('paid_info',[HomeController::class,'paid_info'])->name('paid_info');
     Route::get('about_page',[HomeController::class,'about_page'])->name('about_page');
@@ -96,6 +102,9 @@ Route::group(['middleware' => ['auth','is_admin'], 'prefix' => 'dashboard'], fun
     Route::get('product_update',[ProductController::class,'update_status'])->name('products.update.status');
     Route::get('product_update_best',[ProductController::class,'update_status_best'])->name('products.update.best');
     Route::get('sliders_update',[SliderController::class,'update_status'])->name('sliders.update.status');
+    Route::get('menu_update',[MenuController::class,'update_status'])->name('menus.update.status');
+
+    
     Route::get('update_stauts_feture',[HomeController::class,'update_stauts_feture'])->name('is_feturs.update.best');
     Route::get('update_stauts_how',[HomeController::class,'update_stauts_how'])->name('how_work.update.best');
 

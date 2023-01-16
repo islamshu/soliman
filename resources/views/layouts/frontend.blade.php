@@ -77,11 +77,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    @foreach (App\Models\Category::get() as $item)
+                    @foreach (App\Models\Menu::where('menu_id',null)->where('status',1)->orderby('sort')->get() as $item)
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="{{ route('category',$item->id) }}" role="button">
+                            <a class="nav-link "  role="button" @if($item->menus != '[]') href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" @else href="{{$item->url}}"@endif >
                                 {{ $item->title }}
                             </a>
+                            @if($item->menus != '[]')
+                            {{-- {{ dd($item->menus) }} --}}
+
+                            <ul class="dropdown-menu">
+                                @foreach ($item->menus as $item)
+
+                                <li><a class="dropdown-item" href="{{ $item->url }}">{{ $item->title }}</a></li>
+                                @endforeach
+
+                            </ul>
+
+                            @endif
 
                         </li>
                     @endforeach

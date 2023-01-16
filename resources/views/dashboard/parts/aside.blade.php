@@ -9,6 +9,11 @@
            
         </li>
         <li class="nav-item  ">
+            <a href="{{ route('menus.index') }}">
+                <i class="fa fa-slideshare"></i>
+                <span class="menu-title">القوائم       </span></a>
+           </li>
+        <li class="nav-item  ">
           <a href="{{ route('sliders.index') }}">
               <i class="fa fa-slideshare"></i>
               <span class="menu-title">السلاديرات       </span></a>

@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('title');
             $table->unsignedBigInteger('menu_id')->nullable();
             $table->mediumText('url');
+            $table->integer('sort');
             $table->integer('status')->default(1);
             $table->timestamps();
         });

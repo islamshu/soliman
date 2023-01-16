@@ -24,6 +24,7 @@
                                 <div class="card-body card-dashboard">
                                     @include('dashboard.parts._error')
                                     @include('dashboard.parts._success')
+                                    
                                     <a href="{{ route('categories.create') }}" class="btn btn-info">اضف جديد</a>
 
                                     <br>
