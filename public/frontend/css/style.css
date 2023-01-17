@@ -186,6 +186,7 @@ header{
     transition: all .5s;
     margin-top: 10px;
     height: 200px;
+    display: flex;
 }
 
 .category .category-item .c-link{
@@ -201,6 +202,7 @@ header{
 .category .category-item .img-box{
     width: 50%;
     margin-bottom: 15px;
+    margin-right: 10px;
 }
 
 .category .category-item .img-box img{
@@ -488,6 +490,7 @@ header{
     width: 80%;
     height: 200px;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .RecentlyAdded .RecentlyAddedItem .img-box img{
@@ -1013,7 +1016,7 @@ display: inline-block;
 
 
 .content{
-    height: 100vh;
+    height: 130vh;
 }
 
 .sign-in{
