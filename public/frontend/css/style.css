@@ -489,7 +489,7 @@ header{
     text-transform: capitalize;
     color: var(--mainColor);
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 }
 
 .RecentlyAdded .RecentlyAddedItem .img-box{
@@ -544,6 +544,12 @@ header{
     height: 370px;
 }
 
+.howItWorks .item h6{
+    max-width: 80%;
+    margin: auto;
+    margin-top: 25px;
+}
+
 .howItWorks .item h2{
     font-size: 24px;
     font-weight: 600;
@@ -552,7 +558,6 @@ header{
 .howItWorks .item p{
     max-width: 80%;
     margin: auto;
-    margin-top: 25px;
 }
 
 .howItWorks .item span{

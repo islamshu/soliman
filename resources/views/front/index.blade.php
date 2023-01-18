@@ -2,6 +2,8 @@
 @section('content')
     <header>
 
+    <div class="container">
+
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 @foreach (App\Models\Slider::where('status', 1)->get() as $key => $item)
@@ -32,6 +34,8 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+
         </div>
 
     </header>
