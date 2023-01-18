@@ -40,6 +40,27 @@ $(document).ready(function(){
     });
 
 
+    $(".owl-three").owlCarousel({
+        autoplay:false,
+        items:4,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+            },
+            480 :{
+                items:2,
+            },
+            768 :{
+                items:2,
+            },
+            1000 :{
+                items:4,
+            }
+        }
+    });
+
+
     var cleave = new Cleave('.Number', {
         creditCard: true,
         onCreditCardTypeChanged: function (type) {
