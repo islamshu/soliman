@@ -969,6 +969,10 @@ margin-bottom: 100px;
    font-weight: 700; 
 }
 
+.related-products .related-products-item a{
+    text-decoration: none;
+}
+
 
 .cart-products{
     /* max-width: 70%; */
