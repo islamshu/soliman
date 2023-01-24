@@ -153,6 +153,8 @@ header{
 
 .carousel-item{
     height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .carousel-item img{
@@ -1341,4 +1343,179 @@ display: inline-block;
     font-weight: 600;
     text-transform: capitalize;
     font-size: 26px;
+}
+
+
+
+
+
+
+
+
+@media (max-width:570px){
+
+    header{
+        /* height: calc(24vh - 69px); */
+        height: unset;
+        margin-bottom: unset;
+    }
+
+    .carousel{
+        height: 30vh;
+    }
+
+    .carousel-item{
+        height: unset;
+    }
+
+    .carousel-item img{
+        object-fit: contain;
+    }
+
+
+    .category h2 span,.products h2 span,.RecentlyAdded h1 span{
+        font-size: 20px;
+    }
+
+    .category .category-item h3{
+        font-size: 17px;
+    }
+
+    .category .category-item p{
+        font-size: 15px;
+    }
+
+    .category {
+        padding-bottom: 5px;
+    }
+
+    .features h2{
+        font-size: 20px;
+    }
+
+    .features p{
+        font-size: 14px;
+    }
+
+    .features .item{
+        margin-top: 19px;
+        border: 1px solid #e4e2e2;
+        padding: 10px;
+        border-radius: 5px;
+        height: 200px;
+        padding-top: 30px;
+    }
+
+    .features .item .img-item{
+        width: 68px;
+        height: 68px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .features .item h3{
+        font-size: 22px;
+    }
+
+    .products .item .price span{
+        font-size: 19px;
+    }
+
+    .products .item a{
+        font-size: 16px;
+    }
+
+    .RecentlyAdded .RecentlyAddedItem{
+        width: 100%;
+        border-right: 1px solid #e6e6e6;
+        padding: 19px;
+        height: 340px;
+    }
+
+    .RecentlyAdded .RecentlyAddedItem .img-box{
+        width: 100%;
+        height: 200px;
+        margin: auto;
+        margin-bottom: 15px;
+    }
+
+    .howItWorks{
+        padding: 10px;
+    }
+
+    .howItWorks .item{
+        height: 325px;
+    }
+
+    .howItWorks .item h2{
+        font-size: 20px;
+    }
+
+    .howItWorks .item p{
+        font-size: 15px;
+    }
+
+    .joinUs{
+        font-size: 18px;
+    }
+
+    .joinUs form{
+
+    }
+
+
+    .joinUs h4{
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .joinUs form input{
+        padding: .734em 1em;
+    }
+
+    footer{
+        text-align: center;
+    }
+
+    footer .contact{
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    footer .footer-item .img-box{
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    footer .footer-item .img-box img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .number{
+        font-size: 22px;
+    }
+
+    .position p{
+        font-size: 14px;
+    }
+
+    footer .footer-item ul{
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    footer .footer-item h3{
+        font-size: 16px;
+    }
+
+    footer .footer-item ul li a{
+        font-size: 14px;
+    }
+
+    .fa-headphones{
+        font-size: 36px;
+    }
 }
