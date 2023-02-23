@@ -9,6 +9,7 @@
         "babenkoivan/telegram-notifications": "^1.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel-notification-channels/telegram": "^2.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",

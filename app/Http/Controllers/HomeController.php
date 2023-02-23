@@ -14,6 +14,7 @@ use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Share;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,9 @@ class HomeController extends Controller
     }
     public function socail(){
         return view('dashboard.socail');
+    }
+    public function share(){
+        dd(Share::currentPage()->linkedin());
 
     }
     public function delete_mail($id){
@@ -81,7 +85,6 @@ class HomeController extends Controller
         $products = Product::where('category_id',$id)->where('status',1)->paginate(5);
         $category = Category::find($id);
         return view('front.category')->with('products',$products)->with('category',$category);
-
     }
     public function send_verification(Request $request){
         $data = new DataInfo();

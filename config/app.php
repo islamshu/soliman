@@ -164,6 +164,7 @@ return [
         TelegramNotifications\TelegramServiceProvider::class ,
         NotificationChannels\Telegram\TelegramServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
 
         /*
@@ -233,6 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class
 
 

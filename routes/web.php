@@ -54,6 +54,7 @@ Route::get('cancel-payment', [PayPalPaymentController::class,'paymentCancel'])->
 Route::get('payment-success', [PayPalPaymentController::class,'paymentSuccess'])->name('success.payment');
 Route::get('track_order', [HomeController::class,'track_order'])->name('track_order');
 Route::post('track_order_post', [HomeController::class,'track_order_post'])->name('track_order_post');
+Route::get('share',[HomeController::class,'share']);
 
 
 

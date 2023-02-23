@@ -48,13 +48,13 @@
                                                         <label for="email"> هل هي قائمة رئيسية او فرعية  :</label>
                                                         <select class="form-control" required id="is_parnet">
                                                             <option value="" selected disabled>يرجى الاختيار</option>
-                                                            <option value="1" @if($menu->is_menu == null) selected @endif>رئيسية</option>
-                                                            <option value="0" @if($menu->is_menu != null) selected @endif>فرعية</option>
+                                                            <option value="1" @if($menu->menu_id == null) selected @endif>رئيسية</option>
+                                                            <option value="0" @if($menu->menu_id != null) selected @endif>فرعية</option>
                                                         </select>
 
                                                     </div>
                                                 </div>
-                                                <div id="show_parent" class="col-md-6" @if($menu->is_menu == null) style="display:none" @endif>
+                                                <div id="show_parent" class="col-md-6" @if($menu->menu_id == null) style="display:none" @endif>
                                                     <div class="form-group">
                                                         <label for="email"> تابعة ل  :</label>
                                                         <select name="menu_id" class="form-control" id="menu_id">
