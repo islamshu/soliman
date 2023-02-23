@@ -54,6 +54,7 @@
 
                                                     </div>
                                                 </div>
+                                                {{ dd($menu->menu_id) }}
                                                 <div id="show_parent" class="col-md-6" @if($menu->menu_id == null) style="display:none" @endif>
                                                     <div class="form-group">
                                                         <label for="email"> تابعة ل  :</label>
