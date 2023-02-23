@@ -2,7 +2,9 @@
 @section('content')
     <header>
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="container">
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 @foreach (App\Models\Slider::where('status', 1)->get() as $key => $item)
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
@@ -34,6 +36,8 @@
             </button>
         </div>
 
+        </div>
+
     </header>
 
 
@@ -41,9 +45,9 @@
         <div class="category">
             <h2><span>category</span></h2>
 
-            <div class="row">
+            <div class="owl-carousel owl-three owl-theme">
                 @foreach (App\Models\Category::where('is_feture', 1)->take(4)->get() as $item)
-                    <div class="col-lg-3 col-md-4 col-sm-6">
+
                         <div class="category-item ">
                         <a href="{{ route('category',$item->id) }}" class="c-link">
 
@@ -52,14 +56,13 @@
                             </div>
                             <div class="">
                                 <h3>{{ $item->title }}</h3>
-                                <a href="{{ route('category',$item->id) }}">
                                     <p>shop now <span><i class="fa-solid fa-arrow-right"></i></span></p>
-                                </a>
+
                             </div>
 
-                            </a>
+                        </a>
                         </div>
-                    </div>
+
                 @endforeach
 
 
@@ -173,7 +176,7 @@
                     <div class="img-box">
                         <img src="{{ asset('uploads/'.$item->image) }}" alt="">
                     </div>
-                    
+
 
                     <div class="d-flex justify-content-between">
                         <h5>{{ $item->price_after_discount }} $</h5>
